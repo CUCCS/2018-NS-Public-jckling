@@ -142,11 +142,20 @@
 > $> iptables -t nat -A PREROUTING -s 192.168.0.0/16 -i eth0 [...]
 >```
 
+##### 添加规则到iptables
+```bash
+iptables -t nat -L #选择NAT表并列出所有规则
+iptables-save -c > iptables.rules #将规则写入iptables.rules
+gedit iptables.rules #编辑
+-A POSTROUTING -o eth0 -s 192.168.56.0/24 -j MASQUERADE #添加到COMMIT前
+iptables-restore < iptables.rules #将规则写回iptables
+```
+![](iptables.png)
+
 ##### 开机启动ipv4端口转发
 将/etc/sysctl.conf文件中的`#net.ipv4.ip_forward=1`注释去掉，重启即可
 
 ![](ipv4forward.png)
-
 
 ### DNS服务器配置
 NAT network模式下，DNS服务器会根据宿主机(host)的DNS服务器的改变而改变，而当虚拟机的DNS服务器和宿主机(host)的DNS服务器相同时，就可以正常上网了，默认为192.168.1.1
@@ -154,7 +163,6 @@ NAT network模式下，DNS服务器会根据宿主机(host)的DNS服务器的改
 
 internal模式下的虚拟机，需要和网关的DNS服务器相同或使用别的DNS服务器，反正默认192.168.1.1是不行的，除非host、网关的DNS服务器都是192.168.1.1
 - 实验推论，不打包票
-
 
 ### 参考资料
 - [VirtualBox Networking: an overview](http://bertvv.github.io/notes-to-self/2015/09/29/virtualbox-networking-an-overview/)
