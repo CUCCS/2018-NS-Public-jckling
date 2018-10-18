@@ -22,7 +22,7 @@ nc -u -l -p 53 < /etc/passwd
 `nc -ulp 53` 监听udp/53端口，但不建立连接
 > Used to specify that nc should listen for an incoming connection rather than initiate a connection to a remote host. 
 
-`nc -u -l -p 53 < /etc/passwd` 开启文件传输，获取`/etc/passwd`文件，因此端口是“打开”状态
+`nc -u -l -p 53 < /etc/passwd` 开启文件传输，发送`/etc/passwd`文件，因此端口是“打开”状态
 
 端口关闭时，返回了一个ICMP数据包；端口开启后，有了UDP响应
 
