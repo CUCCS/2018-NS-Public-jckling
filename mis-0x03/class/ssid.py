@@ -4,6 +4,8 @@ import chardet
 # type: management frame-0
 # subtype：Association request-0   Reassociation request-2   Probe Request-4    Probe Response-5 	Beacon Frame-8
 
+toHex = lambda x: "".join("{:02X}".format(c) for c in x)
+
 def ssid_coding(name):
     encoding_type = str(chardet.detect(name)['encoding']) # 判断字符编码
     if str(encoding_type) != 'None':
@@ -19,13 +21,12 @@ def ssid_coding(name):
 def find_ssid(path):
     packets = rdpcap(path)
     SSID_bytes, SSID = [], []
-    mat = '{:15s}{:<9d}{:45s}'
     for pkt in packets:
         if pkt.haslayer(Dot11):
             if pkt.type == 0 and (pkt.subtype == 8 or pkt.subtype == 5):
                 if pkt.info not in SSID_bytes:
                     encoding_type, name = ssid_coding(pkt.info)
-                    print(mat.format(encoding_type, len(pkt.info), name))
+                    print(encoding_type.ljust(15), str(len(pkt.info)).ljust(9), name.ljust(45), toHex(pkt.info).ljust(120))
                     SSID_bytes.append(pkt.info)
                     SSID.append(name)
     print('Toatal:', len(SSID))
@@ -45,7 +46,7 @@ def hidden_ssid(path):
     for ssid in responses:
         if ssid not in beacons and ssid not in hidden_bytes:
             encoding_type, name = ssid_coding(ssid)
-            print('%-15s%-9d%s'%(encoding_type, len(ssid), name))
+            print(encoding_type.ljust(15), str(len(ssid)).ljust(9), name.ljust(45), toHex(ssid).ljust(120))
             hidden_bytes.append(ssid)
             hidden.append(name)
     print('Toatal:', len(hidden))
