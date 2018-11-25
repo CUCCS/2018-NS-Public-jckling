@@ -42,7 +42,7 @@
 ![](target-internal.png)
 
 #### 网关(gateway)
-- 两块网卡，一个为内网(internal)模式，另一个为NAT networt模式
+- 两块网卡，一个为内网(internal)模式，另一个为NAT network模式
 - 网关的一个端口和靶机在同一个网段中，并作为其网关，可以相互ping通
 - 将192.168.56.102的默认网关设置为10.0.2.6
 ![](gateway-internal.png)
