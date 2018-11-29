@@ -1,0 +1,99 @@
+root@Attacker:~# nmap -sL 192.168.1.0/24
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-25 02:40 CST
+
+root@Attacker:~# nmap -sn 192.168.1.0/24
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-25 02:41 CST
+Nmap scan report for 192.168.1.1
+Host is up (0.0012s latency).
+MAC Address: 0A:00:27:00:00:11 (Unknown)
+Nmap scan report for 192.168.1.3
+Host is up (0.00086s latency).
+MAC Address: 08:00:27:5A:1E:C8 (Oracle VirtualBox virtual NIC)
+Nmap scan report for 192.168.1.100
+Host is up (0.0012s latency).
+MAC Address: 08:00:27:60:32:71 (Oracle VirtualBox virtual NIC)
+Nmap scan report for 192.168.1.6
+Host is up.
+Nmap done: 256 IP addresses (4 hosts up) scanned in 27.69 seconds
+root@Attacker:~# nmap -sS 192.168.1.3
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-25 02:43 CST
+Nmap scan report for 192.168.1.3
+Host is up (0.17s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+MAC Address: 08:00:27:5A:1E:C8 (Oracle VirtualBox virtual NIC)
+
+Nmap done: 1 IP address (1 host up) scanned in 14.85 seconds
+root@Attacker:~# nmap -sT 192.168.1.3
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-25 02:43 CST
+Nmap scan report for 192.168.1.3
+Host is up (0.052s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+MAC Address: 08:00:27:5A:1E:C8 (Oracle VirtualBox virtual NIC)
+
+Nmap done: 1 IP address (1 host up) scanned in 13.77 seconds
+root@Attacker:~# nmap -sU 192.168.1.3
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-25 02:44 CST
+
+root@Attacker:~# nmap -O -sV 192.168.1.3
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-25 02:47 CST
+Nmap scan report for 192.168.1.3
+Host is up (0.0053s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.8p1 Debian 1 (protocol 2.0)
+80/tcp open  http    Apache httpd 2.4.34 ((Debian))
+MAC Address: 08:00:27:5A:1E:C8 (Oracle VirtualBox virtual NIC)
+Device type: general purpose
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.9
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 24.83 seconds
+root@Attacker:~# nmap -sC 192.168.1.3 -p 21
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-25 02:49 CST
+Nmap scan report for 192.168.1.3
+Host is up (0.00032s latency).
+
+PORT   STATE  SERVICE
+21/tcp closed ftp
+MAC Address: 08:00:27:5A:1E:C8 (Oracle VirtualBox virtual NIC)
+
+Nmap done: 1 IP address (1 host up) scanned in 14.71 seconds
+root@Attacker:~# nmap -A 192.168.1.3
+Starting Nmap 7.70 ( https://nmap.org ) at 2018-11-25 02:50 CST
+Nmap scan report for 192.168.1.3
+Host is up (0.0070s latency).
+Not shown: 998 closed ports
+PORT   STATE SERVICE VERSION
+22/tcp open  ssh     OpenSSH 7.8p1 Debian 1 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 19:b1:d6:70:61:63:ca:5d:bf:67:c9:e5:1b:a2:3e:98 (RSA)
+|   256 c6:fd:22:f4:c5:6b:e2:05:c9:55:c9:49:39:ef:2e:c0 (ECDSA)
+|_  256 1b:4f:fa:f1:fd:9f:03:9f:43:51:bb:53:c5:32:83:98 (ED25519)
+80/tcp open  http    Apache httpd 2.4.34 ((Debian))
+|_http-server-header: Apache/2.4.34 (Debian)
+|_http-title: Apache2 Debian Default Page: It works
+MAC Address: 08:00:27:5A:1E:C8 (Oracle VirtualBox virtual NIC)
+Device type: general purpose
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.9
+Network Distance: 1 hop
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+TRACEROUTE
+HOP RTT     ADDRESS
+1   7.02 ms 192.168.1.3
+
+OS and Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 26.54 seconds
+root@Attacker:~# 
