@@ -758,19 +758,19 @@ MASQUERADE  all  --  172.16.18.0/24       0.0.0.0/0
 
 ##### 实验结果与分析
 - [x] host-1可以ping通ip: 172.16.18.1吗？
-    - host-1发送icmp数据包(udp) → INPUT链 → icmp_demo链 → 接受并响应
+    - host-1发送icmp数据包 → INPUT链 → icmp_demo链 → 接受并响应
 ![](think/1.png)
 
 
 - [ ] host-1可以ping通ip: 192.168.1.1吗？
-    - host-1发送icmp数据包(udp) → FORWARD链 → forward_demo链 → udp 目标端口7 → 丢弃
+    - host-1发送icmp数据包 → FORWARD链 → forward_demo链 → 丢弃
 ![](think/2.png)
 
 
 - [ ] host-1可以ping通域名: www.baidu.com吗？
     - host-1发送udp数据包(DNS) → FORWARD链 → forward_demo链 → udp 目标端口53 → 接受并转发
     - 网关响应udp数据包(DNS) → FORWARD链 → forward_demo链 → udp 源端口53 → 接受并转发
-    - host-1发送icmp数据包(udp) → FORWARD链 → forward_demo链 → udp 目标端口7 → 丢弃
+    - host-1发送icmp数据包 → FORWARD链 → forward_demo链 → 丢弃
 ![](think/3.png)
 
 
@@ -790,8 +790,8 @@ MASQUERADE  all  --  172.16.18.0/24       0.0.0.0/0
 
 - [x] host-3可以ping通ip: 172.16.18.1吗？
 - [ ] host-3可以ping通ip: 192.168.1.1吗？
-    - host-3发送icmp数据包(udp) → INPUT链 → icmp_demo链 → 接受并响应
-    - host-3发送icmp数据包(udp) → FORWARD链 → forward_demo链 → udp 源ip地址172.16.18.12 目标端口7 → 丢弃
+    - host-3发送icmp数据包 → INPUT链 → icmp_demo链 → 接受并响应
+    - host-3发送icmp数据包 → FORWARD链 → forward_demo链 → 丢弃
 ![](think/67.png)
 
 
