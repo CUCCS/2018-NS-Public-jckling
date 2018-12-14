@@ -289,7 +289,7 @@ snort 也可以结合 NFQ 等配置为 IPS 模式 (inline-mode)，暂未实验�
 
 相比而言， IDS 由于是被动检测，因此检测时可以进行更加复杂的分析；而 IPS 必须快速执行其检查和响应的工作，以避免降低网络性能并实时阻止潜在的攻击。
 
-可以将某些 IDS 系统配置为采取预定义的主动操作以响应威胁。一个例子就是修改防火墙的规则以阻止来自特定IP地址的不需要的流量，这被称为反应性IDS。（如实验四中 snort + guardian）
+可以将某些 IDS 系统配置为采取预定义的主动操作以响应威胁。一个例子就是修改防火墙的规则以阻止来自特定IP地址的不需要的流量，这被称为响应型IDS。（如实验四中 snort + guardian）
 
 ### 相关指令
 
@@ -325,3 +325,4 @@ Host: 10.0.2.9
 - [Suricata 11. Setting up IPS/inline for Linux](https://suricata.readthedocs.io/en/latest/setting-up-ipsinline-for-linux.html)
 - [Wikipedia    Intrusion detection system](https://en.wikipedia.org/wiki/Intrusion_detection_system)
 - [IDS vs. IPS: What is the Difference?](https://www.varonis.com/blog/ids-vs-ips/)
+- [suricata-4.0.5 Differences From Snort](https://suricata.readthedocs.io/en/suricata-4.0.5/rules/differences-from-snort.html)
