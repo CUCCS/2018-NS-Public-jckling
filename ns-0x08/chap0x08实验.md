@@ -186,14 +186,39 @@ iptables -A FORWARD -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s 
 
 使用 namp 扫描照样扫描
 - TCP Connect 扫描
-- **因为防火墙限制tcp数据包速率的规则设置在了FORWARD链上**
+- **因为防火墙限制tcp数据包速率的规则设置在了FORWARD链上，而且针对的是 RST 数据包**
 
 ![](iptables/nmap.png)
 
-如果将规则设置在INPUT链上，则可以防止nmap的暴力扫描
-- 扫描是成功了，但发送出去数据包都没有响应，因此判定为被过滤掉，只能验证目标主机存活
+换了一个环境继续对 `limit` 模块进行体验
+- 初始状态是 Attacker 可以 ping 通 Server 、可以访问 80 端口、 nmap 扫描成功
 
-![](iptables/nmap2.png)
+![](iptables/v1_limit.png)
+
+
+如果将默认规则设置为 DROP ，并将规则设置在 INPUT 链上，则可以防止 nmap 的暴力扫描
+- 扫描是成功了，但发送出去数据包都没有响应，因此判定为被过滤掉，只能验证目标主机存活
+- 但起始本条规则写得一点也不完备，只能接受 RST 数据包， nmap 扫描不了，普通的访问也不可以
+
+![](iptables/v2_limit.png)
+
+
+在防火墙上针对 icmp 数据包使用 `limit` 模块
+
+```bash
+# 限制 icmp 数据包 1 分钟 1 个
+# 默认 --limit-burst 5 ，前 5 个 icmp 数据包没有受到限制
+iptables -A INPUT -p icmp -m limit 1/m -j ACCEPT
+
+# 不匹配上一条规则，则丢弃 icmp 数据包
+iptables -A INPUT -p icmp -j REJECT
+
+# 限制 icmp 数据包 1 分钟 1 个，前 2 个 icmp 数据包没有受限
+# 之后每 1 min 允许 1 个 icmp 数据包入站
+iptables -A INPUT -p icmp -m limit 1/m --limit-burst 2 -j ACCEPT
+```
+
+![](iptables/icmp.png)
 
 
 禁止使用FTP协议下载（即封闭TCP协议的21端口）
@@ -827,3 +852,4 @@ MASQUERADE  all  --  172.16.18.0/24       0.0.0.0/0
 - [互联网控制消息协议](https://zh.wikipedia.org/wiki/%E4%BA%92%E8%81%94%E7%BD%91%E6%8E%A7%E5%88%B6%E6%B6%88%E6%81%AF%E5%8D%8F%E8%AE%AE)
 - [Chapter 11. iptables firewall](http://linux-training.be/security/ch11.html)
 - [Archlinux iptables](https://wiki.archlinux.org/index.php/iptables)
+- [iptables详解（5）：iptables匹配条件总结之二（常用扩展模块）](http://www.zsythink.net/archives/1564)
