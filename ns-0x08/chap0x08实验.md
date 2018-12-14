@@ -184,10 +184,16 @@ iptables -A FORWARD -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s 
 
 ![](iptables/limit.png)
 
-使用 namp 扫描照样扫(?)
+使用 namp 扫描照样扫描
 - TCP Connect 扫描
+- **因为防火墙限制tcp数据包速率的规则设置在了FORWARD链上**
 
 ![](iptables/nmap.png)
+
+如果将规则设置在INPUT链上，则可以防止nmap的暴力扫描
+- 扫描是成功了，但发送出去数据包都没有响应，因此判定为被过滤掉，只能验证目标主机存活
+
+![](iptables/nmap2.png)
 
 
 禁止使用FTP协议下载（即封闭TCP协议的21端口）
@@ -353,7 +359,8 @@ iptables -t nat -A PREROUTING -d 1.2.3.4/24 -i eth2 -j DNAT --to 192.168.1.3
 
 ![](nat/2/Q/tcp.png)
 
-我猜测是因为接收到的数据包被 DNAT 修改目标地址，被认为是发往本机（网关）的数据包，因此网关做出了响应，但响应的 ip 数据包的源地址是 192.168.1.3 ，并没有被 SNAT 规则改变。而 ICMP 的请求与响应是不看 IP的，只看 Sequence 和 ID的。综上，攻击者就能获得各种响应，但其实都是来自网关的。
+:heavy_check_mark: 因为接收到的数据包被 DNAT 修改目标地址，被认为是发往本机（网关）的数据包，因此网关做出了响应，但响应的 ip 数据包的源地址是 192.168.1.3 ，并没有被 SNAT 规则改变。而 ICMP 的请求与响应是不看 IP的，只看 Sequence 和 ID的。综上，攻击者就能获得各种响应，但其实都是来自网关的。
+- ICMP 数据包并不封装于 TCP/UDP
 
 #### 实现NAT
 ##### 实验环境
@@ -472,9 +479,8 @@ iptables-restore < iptables.rules
 - [tcpdump 抓包](firewall/tcpdump)
 
 ```bash
-# 无结果打印，Ctrl+c切断
 # List Scan - simply liist targets to scan
-nmap -sL 192.168.1.0/24
+nmap -sL 192.168.1.0/24 -n
 
 # Ping Scan
 nmap -sn 192.168.1.0/24
@@ -485,9 +491,8 @@ nmap -sS 192.168.1.3
 # TCP Connect() Scan
 nmap -sT 192.168.1.3
 
-# 无结果打印，Ctrl+c切断
 # UDP Scan
-nmap -sU 192.168.1.3
+nmap -sU 192.168.1.3 -n
 
 # Enable OS detection
 # Probe open ports to determine service/version info
@@ -500,6 +505,11 @@ nmap -sC 192.168.1.3 -p 21
 nmap -A 192.168.1.3
 ```
 
+- 添加 `-n` 参数避免DNS解析
+> -n: Never do dns resolution
+
+![](firewall/sLsU.png)
+
 #### 获取日志
 
 ```bash
@@ -511,6 +521,9 @@ iptables -t raw -L -v
 # Binary file (standard input) matches报错
 cat /var/log/syslog | grep -a DEBUG_IPT > DEBUG_IPT
 cat /var/log/kern.log | grep -a TRACE > TRACE
+
+# 使用以下命令替换
+grep -a DEBUG_IPT /var/log/syslog > DEBUG_IPT
 ```
 
 概要统计如下
