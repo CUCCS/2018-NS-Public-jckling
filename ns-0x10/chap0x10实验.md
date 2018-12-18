@@ -5,10 +5,8 @@
 ![](imgs/topology.png)
 
 ```bash
-# 修改主机名
-gedit /etc/hosts
-gedit /etc/hostname
-reboot
+# 修改主机名，再次打开命令行窗口即可
+hostnamectl set-hostname xxx
 ```
 
 ![](imgs/ifconfig.png)
@@ -221,7 +219,7 @@ vi /etc/fail2ban/jail.local
 fail2ban-client status
 
 # 查看 sshd jail 信息
-fail2ban-client status ssh
+fail2ban-client status sshd
 ```
 
 ![](imgs/fail2ban/jail.png)
