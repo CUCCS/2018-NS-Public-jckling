@@ -1,0 +1,10 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	packet_filter
+#open	2018-12-23-09-31-27
+#fields	ts	node	filter	init	success
+#types	time	string	string	bool	bool
+1545575487.765584	bro	ip or not ip	T	T
+#close	2018-12-23-09-33-06

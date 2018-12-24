@@ -1,0 +1,10 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	dpd
+#open	2018-12-23-09-32-29
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	analyzer	failure_reason
+#types	time	string	addr	port	addr	port	enum	string	string
+1545575549.302201	ChoLWb2fDLvpjLiTq7	10.0.2.19	35820	10.0.2.18	22	tcp	SSH	Binpac exception: binpac exception: out_of_bound: SSH2_KEXINIT: -492120202 > 0
+#close	2018-12-23-09-33-06

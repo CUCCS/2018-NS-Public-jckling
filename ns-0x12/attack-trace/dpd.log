@@ -1,0 +1,10 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	dpd
+#open	2018-12-23-07-38-17
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	analyzer	failure_reason
+#types	time	string	addr	port	addr	port	enum	string	string
+1240198109.447746	Cy77SK1F2R7idGHL63	98.114.205.102	1828	192.150.11.111	445	tcp	SMB	Binpac exception: binpac exception: out_of_bound: SMB1_tree_connect_andx_request:extra_byte_parameters: 60 > 62
+#close	2018-12-23-07-38-17

@@ -1,0 +1,11 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	ssh
+#open	2018-12-23-09-32-53
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	version	auth_success	auth_attempts	direction	client	server	cipher_alg	mac_alg	compression_alg	kex_alg	host_key_alg	host_key	remote_location.country_code	remote_location.region	remote_location.city	remote_location.latitude	remote_location.longitude
+#types	time	string	addr	port	addr	port	count	bool	count	enum	string	string	string	string	string	string	string	string	string	string	string	double	double
+1545575549.237367	ChoLWb2fDLvpjLiTq7	10.0.2.19	35820	10.0.2.18	22	2	-	-	-	SSH-2.0-OpenSSH_7.9p1 Debian-4	SSH-2.0-OpenSSH_7.9p1 Debian-4	chacha20-poly1305@openssh.com	umac-64-etm@openssh.com	none	curve25519-sha256	rsa-sha2-512	-	-	-	-	-	-
+1545575570.425913	Che1U722d8VJG3iHji	10.0.2.19	35822	10.0.2.18	22	2	-	-	-	SSH-2.0-OpenSSH_7.9p1 Debian-4	SSH-2.0-OpenSSH_7.9p1 Debian-4	chacha20-poly1305@openssh.com	umac-64-etm@openssh.com	none	curve25519-sha256	rsa-sha2-512	-	-	-	-	-	-
+#close	2018-12-23-09-33-06

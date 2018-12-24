@@ -1,0 +1,14 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	conn
+#open	2018-12-23-07-38-17
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	proto	service	duration	orig_bytes	resp_bytes	conn_state	local_orig	local_resp	missed_bytes	history	orig_pkts	orig_ip_bytes	resp_pkts	resp_ip_bytes	tunnel_parents
+#types	time	string	addr	port	addr	port	enum	string	interval	count	count	string	bool	bool	count	string	count	count	count	count	set[string]
+1240198108.374595	ChBP1b2fkfSYekRDT9	98.114.205.102	1821	192.150.11.111	445	tcp	-	0.238169	0	0	SF	-	-	0	ShAFaf	4	168	3	128	(empty)
+1240198110.466428	CYp0Vf4cAQHonWaJK8	98.114.205.102	1924	192.150.11.111	1957	tcp	-	2.980258	133	2	SF	-	-	0	ShAdDaFf	6	381	6	250	(empty)
+1240198108.509145	Cy77SK1F2R7idGHL63	98.114.205.102	1828	192.150.11.111	445	tcp	ntlm	4.938123	4209	902	RSTO	-	-	0	ShADadR	14	4777	17	1590	(empty)
+1240198113.457215	Cb2LgE4wjb4kVWQe0f	192.150.11.111	36296	98.114.205.102	8884	tcp	ftp	11.136591	77	214	SF	-	-	0	ShAdDFaRf	15	841	12	850	(empty)
+1240198114.516921	CS4WEy4CrZhMggc5De	98.114.205.102	2152	192.150.11.111	1080	tcp	ftp-data	9.954513	158720	0	SF	-	-	0	ShADaFf	159	165088	112	4488	(empty)
+#close	2018-12-23-07-38-17

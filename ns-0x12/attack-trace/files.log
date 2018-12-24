@@ -1,0 +1,10 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2018-12-23-07-38-17
+#fields	ts	fuid	tx_hosts	rx_hosts	conn_uids	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	set[addr]	set[addr]	set[string]	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1240198114.648099	FHUsSu3rWdP07eRE4l	98.114.205.102	192.150.11.111	CS4WEy4CrZhMggc5De	FTP_DATA	0	EXTRACT,SHA1,MD5,PE	application/x-dosexec	-	9.767306	-	T	158720	-	0	0	F	-	14a09a48ad23fe0ea5a180bee8cb750a	ac3cdd673f5126bc49faa72fb52284f513929db4	-	extract-1240198114.648099-FTP_DATA-FHUsSu3rWdP07eRE4l	F	-
+#close	2018-12-23-07-38-17
