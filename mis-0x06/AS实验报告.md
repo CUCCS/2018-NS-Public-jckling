@@ -238,7 +238,7 @@ adb -s emulator-5554 shell am start -n cn.edu.cuc.misdemo/cn.edu.cuc.misdemo.Dis
 
 ##### 如何修改代码实现通过 adb shell am start -a android.intent.action.VIEW -d //sec.cuc.edu.cn/ 可以让我们的cuc.edu.cn.misdemo程序出现在“用于打开浏览器的应用程序选择列表”？
 - app > manifests > AndroidManifest.xml
-- 添加如下[代码](imgs/manifest.png)
+- 添加如下 [代码](imgs/manifest.png)
 
 ```java
 // AndroidManifest.xml  <activity android:name=".MainActivity">
@@ -282,6 +282,10 @@ packageManager.setComponentEnabledSetting(componentName,
 - 在 activity_display_message.xml 的布局声明部分添加 `android:"@id/activity_display_message"`
 
 ![](imgs/layout.png)
+
+根据源代码逻辑，在线获得 md5 
+
+![](imgs/md5.png)
 
 实现结果
 
