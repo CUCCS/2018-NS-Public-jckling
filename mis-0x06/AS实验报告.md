@@ -238,7 +238,7 @@ adb -s emulator-5554 shell am start -n cn.edu.cuc.misdemo/cn.edu.cuc.misdemo.Dis
 
 ##### 如何修改代码实现通过 adb shell am start -a android.intent.action.VIEW -d //sec.cuc.edu.cn/ 可以让我们的cuc.edu.cn.misdemo程序出现在“用于打开浏览器的应用程序选择列表”？
 - app > manifests > AndroidManifest.xml
-- 添加如下代码
+- 添加如下[代码](imgs/manifest.png)
 
 ```java
 // AndroidManifest.xml  <activity android:name=".MainActivity">
@@ -277,7 +277,42 @@ packageManager.setComponentEnabledSetting(componentName,
 
 
 ### HelloWorld v2
-尚待补充
+
+在 HelloWorld v1 的基础上稍作修改
+- 在 activity_display_message.xml 的布局声明部分添加 `android:"@id/activity_display_message"`
+
+![](imgs/layout.png)
+
+实现结果
+
+![](imgs/v2.gif)
+
+##### DisplayMessageActivity.java中的2行打印日志语句是否有风险？如果有风险，请给出漏洞利用示范。如果没有风险，请给出理由。
+- 打印变量 → 静态插桩
+- 直接获取正确的输入信息
+
+![](imgs/log.png)
+
+在模拟器的 shell 中输出调试日志
+- `adb shell logcat`
+
+![](imgs/log2.png)
+
+##### SharedPreferences类在进行读写操作时设置的 Context.MODE_PRIVATE 参数有何作用和意义？还有其他可选参数取值吗？
+- 文件存放在 `/data/data/<package name>/shared_prefs` 目录下
+
+1. MODE_PRIVATE：默认操作模式，代表该文件是私有数据，只能被应用本身访问，在该模式下，写入的内容会覆盖原文件的内容
+2. MODE_APPEND：检查文件是否存在，存在就把新写入的内容追加到原文件中，否则就创建新文件
+3. MODE_WORLD_READABLE：表示当前文件可以被其他应用读取（控制其他应用是否有权限）
+4. MODE_WORLD_WRITEABLE：表示当前文件可以被其他应用写入（控制其他应用是否有权限）
+
+API 版本不同支持的模式不同
+
+![](imgs/warning.png)
+
+- 发现重复安装软件时 uid/gid 递增
+
+![](imgs/mode.png)
 
 ### 参阅
 - [KeyEvent 常量](https://developer.android.com/reference/android/view/KeyEvent)
@@ -290,3 +325,5 @@ packageManager.setComponentEnabledSetting(componentName,
 - [How to add my browser in the default browser selection list in android?](https://stackoverflow.com/questions/7394369/how-to-add-my-browser-in-the-default-browser-selection-list-in-android)
 - [应用清单 图标和标签](https://developer.android.com/guide/topics/manifest/manifest-intro?hl=zh-cn#filec)
 - [Hide app icon programmatically in Android Studio](https://www.youtube.com/watch?v=unkPNTBPs9w)
+- [md5 Hash Generator](http://www.miraclesalad.com/webtools/md5.php)
+- [Context MODE_PRIVATE](https://developer.android.com/reference/android/content/Context.html#MODE_PRIVATE)
