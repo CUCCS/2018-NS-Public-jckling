@@ -1,0 +1,10 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	files
+#open	2018-12-23-09-32-03
+#fields	ts	fuid	tx_hosts	rx_hosts	conn_uids	source	depth	analyzers	mime_type	filename	duration	local_orig	is_orig	seen_bytes	total_bytes	missing_bytes	overflow_bytes	timedout	parent_fuid	md5	sha1	sha256	extracted	extracted_cutoff	extracted_size
+#types	time	string	set[addr]	set[addr]	set[string]	string	count	set[string]	string	string	interval	bool	bool	count	count	count	count	bool	string	string	string	string	string	bool	count
+1545575523.726236	FOfr4v1jfH1XGC9DB9	10.0.2.18	10.0.2.19	CwzEJX3qMbZkgTej5f	HTTP	0	SHA1,EXTRACT,MD5	text/html	-	0.000000	-	F	10701	10701	0	0	F	-	e2620d4a5a0f8d80dd4b16de59af981f	d23f3a5389aee902652b149cbe2474a12c57fa5a	-	extract-1545575523.726236-HTTP-FOfr4v1jfH1XGC9DB9	F	-
+#close	2018-12-23-09-33-06

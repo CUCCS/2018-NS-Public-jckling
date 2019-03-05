@@ -1,0 +1,11 @@
+#separator \x09
+#set_separator	,
+#empty_field	(empty)
+#unset_field	-
+#path	weird
+#open	2018-12-23-09-32-29
+#fields	ts	uid	id.orig_h	id.orig_p	id.resp_h	id.resp_p	name	addl	notice	peer
+#types	time	string	addr	port	addr	port	string	string	bool	string
+1545575549.246119	ChoLWb2fDLvpjLiTq7	10.0.2.19	35820	10.0.2.18	22	ssh_unknown_kex_algorithm=curve25519-sha256	-	F	bro
+1545575570.433472	Che1U722d8VJG3iHji	10.0.2.19	35822	10.0.2.18	22	ssh_unknown_kex_algorithm=curve25519-sha256	-	F	bro
+#close	2018-12-23-09-33-06
