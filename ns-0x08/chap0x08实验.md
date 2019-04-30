@@ -118,10 +118,10 @@ service proftpd restart
 cd /srv/ftp
 
 # 新建文件夹
-mkdir dowmload
+mkdir download
 
 # 修改文件夹权限（权限有待考究）
-chomd -R 777 dowmload
+chomd -R 777 download
 ```
 
 此时，已经可以在攻击者主机上访问网关的ftp： `ftp://192.168.1.103` 以及相应的 download 目录
